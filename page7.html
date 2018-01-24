@@ -1,0 +1,254 @@
+<html>
+	<head>
+		<title>Pug Games</title>
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+		<img src="images/HomeHeader.jpg"/>
+		<nav>
+			<a href="index.html">Home</a>
+			<a href="page2.html">Serpongtine</a>
+			<a href="page3.html">Snake</a>
+			<!--a href="page4.html">Lothamator</a--!>
+			<!--a href="page5.html">Flappydactyl</a--!>
+			<a href="page7.html">PhysX Sim</a>
+			<a href="page8.html">Gravity Sim</a>
+			<a href="page9.html">Game of Life: War</a>
+			<a href="page6.html">Coming Soon</a>	
+		</nav>
+        <h2>PhysX Sim:</h2>
+        <p class="text">This sandbox physics game has lots of easter eggs to find, get searching!</p>
+		<h2>Controls:</h2>
+        <p class="text">Mouse</p>
+		<p class="spacer"></p>
+		<!--Where the physX sim starts-->
+		<div id="physX">
+			<canvas id="sandbox" width="1000" height="680" style="border:5px solid #000000; cursor: none;"></canvas>
+			<div id="info" style="cursor: none;">
+				<h3>About Physx Sim</h3>
+				<ul>
+    				<b>CONTROLS:</b>
+					<li>ESC - Hide Info</li>
+					<li>Left Click  - PAINT</li>
+					<li>Right Click - ERASE</li>
+					<li># 1-9 - Change Brush Thickness</li>
+					<li>F KEY - Cycle Paint Mode</li>
+					<li>L KEY - Adjust Grid</li>
+					<li>X KEY - Clear</li>
+					<li>M KEY - Toggle Gate Blocks</li>
+					<li>ARROWS - Move Slider Blocks</li>
+					<li>SPACE - Pause Sim</li>
+    				<li>SHIFT - Linear Paint Mode</li>
+    
+    				<b>BONUS:</b>
+					<li>G KEY - Reverse Gravity</li>
+				</ul>
+				<p>This prototype is meant for running simple physics simulations. It is not yet capable of 
+					<i>actual science,</i> however, development is ongoing. More features coming soon!
+				</p>
+				<p>PhysX Simulator was coded by Ben&nbsp;Chan&nbsp;&amp; Calvin McHenry &copy;2018</p>
+			</div>
+			<div id="toolbar" onmouseenter="showBar('status', 'toolbar', 1)" onmouseleave="showBar('status', 'toolbar', 0)" style="width: 100px;">
+				<div id="status" style="width: 75x; opacity: 0.25;">
+					<h style="color: black;">T Y P E S</h>
+					<button type="button" id="solid" onclick="blockSet(1)">STONE</button>
+					<button type="button" id="glass" onclick="blockSet(18)">GLASS</button>
+					<!--button type="button" id="metal" onclick="blockSet(29)">METAL</button--!>
+					<button type="button" id="powder" onclick="blockSet(2)">SAND</button>
+					<button type="button" id="liquid" onclick="blockSet(3)">WATER</button>
+					<button type="button" id="acid" onclick="blockSet(7)">ACID</button>
+					<button type="button" id="base" onclick="blockSet(16)">BASE</button>
+					<button type="button" id="seed" onclick="blockSet(11)">SEED</button>
+					<button type="button" id="heating" onclick="blockSet(5)">HEATING</button>
+					<button type="button" id="cooling" onclick="blockSet(6)">COOLING</button>
+					<button type="button" id="gate" onclick="blockSet(20)">GATE</button>
+					<button type="button" id="slider" onclick="blockSet(26)">SLIDER</button>
+					<button type="button" id="alchemy" onclick="blockSet(23)">ALCHEMY</button>
+					<button type="button" id="duplicate" onclick="blockSet(24)">REPLICATE</button>
+					<button type="button" id="void" onclick="blockSet(25)">VOID</button>
+					<h style="color: black;">T R A I T S</h>
+					<button type="button" id="density" onclick="blockInfoDefault(5)">DENSITY</button>
+					<button type="button" id="viscosity" onclick="blockInfoDefault(6)">VISCOSITY</button>
+					<button type="button" id="aspect" onclick="blockInfoDefault(7)">ASPECT</button>
+					<h style="color: black;">T O O L S</h>
+					<button type="button" id="size">SIZE: 01</button>
+					<button type="button" id="speed">RATE: 05</button>
+					<button type="button" id="grid">GRID: OFF</button>
+					<button type="button" id="global" onclick="global=1">GLOBAL</button>
+					<button type="button" id="mode" onclick="setPaintMode()">FILL</button>
+					<button type="button" id="backB" style="visibility: hidden; background-color: #c5c500;" onclick="setBackground(false)">SCREEN</button>
+					<button type="button" id="backRB" style="visibility: hidden; background-color: #c5c500;" onclick="setBackground(true)">RESET</button>
+					<button type="button" id="pause" style="margin-top: 33px" onclick="setPaused()" class="toggled">PLAYING</button>
+					<button type="button" id="clear" onclick="clearBoard()">CLEAR</button>
+				</div>
+				<div id="sliders">
+					<input type="range" id="densitySl" min="-5" max="5" value="0" step="1" style="margin-top: 353px" oninput="blockInfoSet(this.value, 5, this.id)">
+					<input type="range" id="viscositySl" min="0" max="1" value=".5" step=".05" oninput="blockInfoSet(this.value, 6, this.id)">
+					<input type="range" id="aspectSl" min="0" max="1" value=".5" step=".05" oninput="blockInfoSet(this.value, 7, this.id)">
+					<input type="range" id="sizeSl" min="1" max="10" value="2" step="1" style="margin-top: 17px" oninput="setPenSize(this.value, this.max)">
+					<input type="range" id="speedSl" min="0" max="10" value="5" step="1" oninput="setGameSpeed(this.value)">
+					<input type="range" id="gridSl" min="1" max="8" value="0" step="1" oninput="setGridSpacing(this.value)">
+					<input type="range" id="rSl" min="0" max="255" value="127" step="1" style="margin-top: 26px; visibility: hidden; background-color: #c11;" oninput="setR(this.value)">
+					<input type="range" id="gSl" min="0" max="255" value="127" step="1" style="visibility: hidden; background-color: #1c1;" oninput="setG(this.value)">
+					<input type="range" id="bSl" min="0" max="255" value="127" step="1" style="visibility: hidden; background-color: #11c;" oninput="setB(this.value)">
+				</div>
+			</div>
+		</div>
+		<style>
+			#physX {
+			color: white;
+			font-family: 'Slabo 27px', serif;
+			font-size: 12px;
+			background-color: #222;
+			position: relative;
+			width: 1000px;
+			margin: 0px auto;
+			-webkit-user-select: none;
+			}
+			#info{
+			top: -680px;
+			font-size: 14px;
+			}
+			#toolbar{
+			top: -680px;
+			}
+			canvas {
+			/*position: absolute;*/
+			background-color: #ddd;
+			}
+			button {
+			outline: 0;
+			font-family: 'Slabo 27px', serif;
+			font-size: 12px;
+			width: 96%;
+			height: 20px;
+			border-style: hidden;
+			border-width: 3px;
+			margin-top: 3px;
+			background-color: #222;
+			color: #fff;
+			
+			}
+			button:hover {
+			font-size: 16px;
+			width: 100%;
+			background-color: #555;
+			}
+			input[type=range] {
+			-webkit-appearance: none; 
+			outline: 0;
+			width: 24px;
+			height: 20px;
+			background-color: #222;
+			border-style: hidden;
+			border-width: 3px;
+			margin-top: 3px;
+			margin-bottom: 0px;
+			position: relative;
+			opacity: 0.25;
+			display: block;
+			float: right;
+			-webkit-transition: width .35s ease-in-out;
+			transition: width .35s ease-in-out;
+			}
+			input[type=range]:hover {
+			background-color: #555;
+			width: 96px;
+			opacity: 0.75;
+			}
+			input[type=range]::-webkit-slider-thumb {
+			-webkit-appearance: none;
+			width: 5px;
+			height: 20px;
+			background: #fff;
+			}
+			input[type=range]::-ms-track {
+			width: 96%;
+			background: transparent; 
+			/* Hides the slider so custom styles can be added */
+			border-color: transparent;
+			color: transparent;
+			}
+			#info {
+			position: relative;
+			color: #222;
+			display: block;
+			width: 300px;
+			float: left;
+			left: 10px;
+			visibility:
+			}
+			#toolbar {
+			text-align: center;
+			position: relative;
+			color: #222;
+			height: 600px;
+			width: 100px;
+			float:right;
+			display: block;
+			-webkit-transition: width .35s ease-in-out;
+			transition: width .35s ease-in-out;
+			}
+			#status {
+			opacity: 0.25;
+			width: 75px;
+			display: block;
+			float: right;
+			-webkit-transition: width .35s ease-in-out;
+			transition: width .35s ease-in-out;
+			}
+			#sliders {
+			position: relative;
+			height: 600px;
+			width: 25px;
+			display: block;
+			float: right;
+			}
+			#clear {
+			background-color: #f00;
+			}
+			#clear:hover {
+			background-color: #f33;
+			}
+			#pause.toggled {
+			background-color: #0d0;
+			}
+			#pause.toggled:hover {
+			background-color: #0f0;
+			}
+			#pause {
+			background-color: #f00;
+			}
+			#pause:hover {
+			background-color: #f33;
+			}
+			#mode.force {
+			background-color: #f00;
+			}
+			#mode.force:hover {
+			background-color: #f33;
+			}
+			#mode.replace {
+			background-color: #00f;
+			}
+			#mode.replace:hover {
+			background-color: #33f;
+			}
+			#mode.recolor {
+			background-color: #c5c500;
+			}
+			#mode.recolor:hover {
+			background-color: #c5c566;
+			}
+			#mode {
+			background-color: #0d0;
+			}
+			#mode:hover {
+			background-color: #0f0;
+			}
+		</style>
+		<script src="js/physx.js"></script>
+		<p class="spacer"></p>
+		<h6>&copy; 2018, Calvin McHenry & Ben Chan</h6>
+	</body>
+</html>

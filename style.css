@@ -1,0 +1,160 @@
+body{
+	background-color:#333333;
+	font-family:Impact;
+	margin:auto;
+	width:1280px;
+}
+
+h1{
+	color:#000000;
+	background-color:#ee7700;
+	font-size:50px;
+	text-align:center;
+	margin:auto;
+}
+
+h2{
+	color:#000000;
+	font-size:40px;
+	text-align:center;
+	margin:auto;
+	margin-top: 20px;
+}
+
+h3{
+	color:#000000;
+	font-size:30px;
+	text-align:center;
+	margin:auto;
+}
+
+h6{
+	color:#000000;
+	position: absolute;
+    width: 100%;
+	font-size:15px;
+	text-align:center;
+	margin:auto;
+	margin-bottom: 10px;
+}
+
+nav{
+	background-color:#0077ee;
+	height:40px;
+	width:1280px;
+}
+
+nav a{
+	height:30px;
+	width:172.8px;
+	display:block;
+	float:left;
+	font-size:20px;
+	color:#111111;
+	text-align:center;
+	line-height:30px;
+	text-decoration:none;
+	border:5px solid;
+	border-color: black #252525 #252525 black;
+}
+
+nav a:hover{
+	background-color:#ee7700;
+}
+
+a{
+	color:#000000;
+}
+
+a.secret{
+	color:#323232;
+	display: block;
+	margin: auto;
+	text-align:center;
+	position:relative;
+	font-size: 30px;
+	width: 100px;
+}
+
+div.test{
+	text-align:center;
+	margin:auto;
+}
+
+img.img{
+	margin:auto;
+	margin-top: 30px;
+	display:block;
+	clear:left;
+}
+
+img.ad{
+	margin:clear;
+	float:left;
+	position:relative;
+}
+
+p.text{
+	color:#000000;
+	font-size:20px;
+	width:500px;
+	text-align:center;
+	margin:auto;
+	position:relative;
+	top:20px;
+}
+p.spacer{
+	height:50px;
+}
+
+p.score2 {
+    color: #99ff00;
+    width: 60px;
+    position: relative;
+    left: 1020px;
+	top: -575px;
+    font-size: 30px;
+    background-color: none;
+}
+
+p.score1 {
+    color: #0099ff;
+    width: 50px;
+    position: relative;
+    left: 210px;
+	top: -515px;
+    font-size: 30px;
+    background-color: none;
+}
+
+canvas{
+	margin:auto;
+	margin-top: 20px;
+	position:relative;
+	display:block;
+}
+
+canvas.pixelrim{
+	cursor:url(http://epicwibbles.com/home/wp-content/uploads/2015/05/PixelCursor.png), auto;
+    background-color:#bddae6;
+}
+
+iframe{
+	margin:auto;
+	margin-top: 20px;
+	position:relative;
+	display:block;
+}
+
+::selection {
+	background: #EE7700;
+	color: #FFF;
+}
+
+#stats {
+    display:block;
+    position:absolute;
+    z-index:1;
+    top:550px;
+    left:950px;
+}
