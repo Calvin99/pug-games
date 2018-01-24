@@ -46,7 +46,6 @@ cell.prototype.update = function() {
 }
 
 cell.prototype.draw = function() {
-	console.log("test");
 	if(this.living) {
     	ctx.fillStyle = this.color;
     	ctx.fillRect(this.x*this.w, this.y*this.h, this.w, this.h);
@@ -74,7 +73,6 @@ function draw() {
 				board[i][j].tally();
 			}
 		}
-		//console.log(board[5][5].crowd+", "+board[5][5].living);
 		
 		for (i = 0; i < board.length; i++) {
 			for(j = 0; j < board[i].length; j++) {
