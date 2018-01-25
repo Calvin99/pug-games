@@ -14,16 +14,16 @@ var play = false;
 var frame = 0;
 
 var BlueVImg = new Image();
-BlueVImg.src = "http://s8.postimg.org/olvtij34l/Blue_Victory.png";
+BlueVImg.src = "https://s8.postimg.org/olvtij34l/Blue_Victory.png";
 
 var GreenVImg = new Image();
-GreenVImg.src = "http://s4.postimg.org/8c68h1dnh/Green_Victory.png";
+GreenVImg.src = "https://s4.postimg.org/8c68h1dnh/Green_Victory.png";
 
 var MenuImg = new Image();
-MenuImg.src = "http://s12.postimg.org/hg3xbu8x9/New_Serpongtine_Logo.png";
+MenuImg.src = "https://s12.postimg.org/hg3xbu8x9/New_Serpongtine_Logo.png";
 
 var PlayButtonImg = new Image();
-PlayButtonImg.src = "http://s15.postimg.org/l9p0r79br/Play_Button.png";
+PlayButtonImg.src = "https://s15.postimg.org/l9p0r79br/Play_Button.png";
 
 function MenuInit() {
     new Button(412, 115, 76, 36, '#ffff00');
